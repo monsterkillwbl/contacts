@@ -25,6 +25,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.happytogether.contacts.processor.SingleThreadProcessor;
+import com.happytogether.contacts.resource_manager.ResourceManagerTest;
+import com.happytogether.framework.log.IDELogger;
+import com.happytogether.framework.log.LogBus;
+import com.happytogether.framework.processor.Processor;
+import com.happytogether.framework.resouce_manager.ResourceManager;
+
 import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //框架初始化，将来会进行包装
+        Processor.init(new SingleThreadProcessor());
+        ResourceManager.init(new ResourceManagerTest());
+        LogBus.getInstance().register(new IDELogger());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

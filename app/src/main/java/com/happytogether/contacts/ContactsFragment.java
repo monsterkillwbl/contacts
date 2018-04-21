@@ -22,6 +22,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Context;
 
+import com.happytogether.contacts.task.QueryAllContactsTask;
+import com.happytogether.framework.processor.Processor;
+import com.happytogether.framework.task.Task;
+import com.happytogether.framework.type.Contacts;
+
 import java.lang.reflect.GenericArrayType;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,23 +59,37 @@ public class ContactsFragment extends Fragment implements AdapterView.OnItemClic
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},1);
         }
-        Cursor cursor = activity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null, null);
+//        Cursor cursor = activity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null, null);
+//
+//        if (cursor != null && cursor.getCount() > 0) {
+//                for (cursor.moveToFirst(); (!cursor.isAfterLast()); cursor.moveToNext()) {
+//                    String contastsName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));  //姓名
+//                    String contastsNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));  //号码
+//                    // 去掉手机号中的空格和“-”
+//                    contastsNumber = contastsNumber.replace(" ", "").replace("-", "").replace("+86", "");
+//
+//                    contactsList.add(new Contacts(contastsName, contastsNumber));
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//            if (cursor == null) {
+//                cursor.close();
+//            }
 
-        if (cursor != null && cursor.getCount() > 0) {
-                for (cursor.moveToFirst(); (!cursor.isAfterLast()); cursor.moveToNext()) {
-                    String contastsName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));  //姓名
-                    String contastsNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));  //号码
-                    // 去掉手机号中的空格和“-”
-                    contastsNumber = contastsNumber.replace(" ", "").replace("-", "").replace("+86", "");
+        //界面中框架使用例子（显示所有联系人）
+        // 注：为了开发效率和分工，界面本身不处理任何逻辑，一律使用Task来处理业务逻辑
 
-                    contactsList.add(new Contacts(contastsName, contastsNumber));
-                }
-                adapter.notifyDataSetChanged();
-            }
-            if (cursor == null) {
-                cursor.close();
-            }
-
+        //1.实例化一个查询所有联系人的Task
+        Task getAllContacts = new QueryAllContactsTask();
+        //2.将Task交给Processor处理
+        Processor.getInstance().process(getAllContacts);
+        //3.等待Task执行完毕，期间可以做些其他事情避免界面卡顿，例如进度条
+        while(!getAllContacts.finished()){
+        }
+        //4.使用Task执行完毕获取的数据更新界面
+        contactsList.clear();
+        contactsList.addAll((List<Contacts>)getAllContacts.getResult());
+        adapter.notifyDataSetChanged();
     }
 
 
