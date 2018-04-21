@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">蛤啤电话本</string>
+    <string name="tab_text_1">通话记录</string>
+    <string name="tab_text_2">联系人</string>
+    <string name="tab_text_3">更多</string>
+    <string name="action_settings">设置</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_search">搜索</string>
+    <string name="action_add">添加联系人</string>
+    <string name="action_about">关于</string>
+    <string name="QRScan">扫一扫</string>
+</resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/history_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
+        android:text="联系人"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/history_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="电话号码"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_name"
+        app:layout_constraintStart_toEndOf="@+id/history_name"
+        app:layout_constraintTop_toTopOf="@+id/history_name" />
+
+    <TextView
+        android:id="@+id/history_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="32dp"
+        android:text="类型"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/history_number" />
+
+    <TextView
+        android:id="@+id/history_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="日期"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_type"
+        app:layout_constraintStart_toEndOf="@+id/history_type"
+        app:layout_constraintTop_toTopOf="@+id/history_type"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/history_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="通话时长"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_date"
+        app:layout_constraintStart_toEndOf="@+id/history_date"
+        app:layout_constraintTop_toTopOf="@+id/history_date"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/history_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="未知归属地"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_duration"
+        app:layout_constraintStart_toEndOf="@+id/history_duration"
+        app:layout_constraintTop_toTopOf="@+id/history_duration"
+        app:layout_constraintVertical_bias="1.0" />
+
+</android.support.constraint.ConstraintLayout>
