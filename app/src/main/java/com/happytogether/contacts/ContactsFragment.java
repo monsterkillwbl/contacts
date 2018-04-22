@@ -57,13 +57,6 @@ public class ContactsFragment extends Fragment{
         contactsView.setAdapter(adapter);
         contactsView.setOnItemClickListener(new MyListener() );
         contactsView.setOnCreateContextMenuListener(new MyListener());
-//        contactsView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-//            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//                menu.setHeaderTitle("选择操作");
-//                menu.add(0, 0, 0, "编辑");
-//                menu.add(0, 1, 0, "删除");
-//            }
-//        });
         return rootView;
     }
 
