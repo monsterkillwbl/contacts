@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //初始化框架
         new FrameworkInitialization();
 
         super.onCreate(savedInstanceState);
