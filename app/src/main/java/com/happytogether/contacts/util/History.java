@@ -1,4 +1,4 @@
-package com.happytogether.contacts;
+package com.happytogether.contacts.util;
 
 /**
  * Created by Monsterkill on 2018/4/20.

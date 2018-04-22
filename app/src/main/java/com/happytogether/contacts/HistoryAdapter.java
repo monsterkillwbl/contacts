@@ -9,16 +9,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
+import com.happytogether.framework.type.CallRecord;
+
 import java.util.List;
 
 /**
  * Created by Monsterkill on 2018/4/20.
  */
 
-public class HistoryAdapter extends ArrayAdapter<History> {
+public class HistoryAdapter extends ArrayAdapter<CallRecord> {
 
     private int resourceID;
-    public HistoryAdapter(@NonNull Context context, int textViewResourceId, @NonNull List<History> objects) {
+    public HistoryAdapter(@NonNull Context context, int textViewResourceId, @NonNull List<CallRecord> objects) {
         super(context,textViewResourceId, objects);
         resourceID = textViewResourceId;
     }
@@ -26,7 +29,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        History history = getItem(position);
+        CallRecord history = getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(resourceID,parent,false);
         TextView name = (TextView) view.findViewById(R.id.history_name);
         TextView number= (TextView) view.findViewById(R.id.history_number);
@@ -35,12 +38,12 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         TextView duration = (TextView) view.findViewById(R.id.history_duration);
         TextView location= (TextView) view.findViewById(R.id.history_location);
 
-        name.setText(history.getName());
+        name.setText("test");
         number.setText(history.getNumber());
-        type.setText(history.getType());
-        date.setText(history.getDate());
-        duration.setText(history.getDuration());
-        location.setText(history.getLocation());
+        type.setText("test");
+        date.setText(String.valueOf(history.getStartTime()));
+        duration.setText(String.valueOf(history.getDuration()));
+        location.setText("test");
         return view;
     }
 }

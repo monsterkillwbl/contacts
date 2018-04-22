@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.happytogether.framework.type.Contacts;
+
 import java.util.List;
 
 /**
