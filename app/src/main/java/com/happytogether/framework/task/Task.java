@@ -9,6 +9,7 @@ public abstract class Task implements Comparable{
     public static final int ERROR = 2;
     public static final int IDLE = 3;
     public static final int RUNNING = 4;
+    public static final int REUSE = 5;
 
     public static final int SYSTEM = 10;
     public static final int FRAMEWORK = 12;
@@ -19,11 +20,21 @@ public abstract class Task implements Comparable{
     private int _status;
     private Object _result;
     private int _priority;
+    private boolean _used;
 
     public Task(){
         _status = IDLE;
         _result = null;
         _priority = NORMAL;
+        _used = false;
+    }
+
+    public int _exec(){
+        if(_used){
+            return REUSE;
+        }
+        _used = true;
+        return exec();
     }
 
     public abstract int exec();
