@@ -1,5 +1,8 @@
 package com.happytogether.contacts.task;
 
+import android.content.ContentResolver;
+import android.net.Uri;
+
 import com.happytogether.framework.log.LogBus;
 import com.happytogether.framework.resouce_manager.ResourceManager;
 import com.happytogether.framework.task.Task;
@@ -22,4 +25,6 @@ public class QueryAllCallRecordTask extends Task {
         //4.返回运行结果（很重要，这里使用int就是为了能区分出足够多的运行状态信息，当前已有的通用状态在Task定义）
         return Task.SUCCESS;
     }
+
+
 }
