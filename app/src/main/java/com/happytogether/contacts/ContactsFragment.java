@@ -13,7 +13,10 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,6 +29,8 @@ import com.happytogether.contacts.task.QueryAllContactsTask;
 import com.happytogether.framework.processor.Processor;
 import com.happytogether.framework.task.Task;
 import com.happytogether.framework.type.Contacts;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 import java.lang.reflect.GenericArrayType;
 import java.text.SimpleDateFormat;
@@ -39,7 +44,7 @@ import java.util.List;
  * Created by Monsterkill on 2018/4/16.
  */
 
-public class ContactsFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class ContactsFragment extends Fragment{
     public ContactsAdapter adapter;
     public List<Contacts> contactsList = new ArrayList<>();
     @Override
@@ -50,7 +55,8 @@ public class ContactsFragment extends Fragment implements AdapterView.OnItemClic
         adapter = new ContactsAdapter(getActivity(), R.layout.item_contacts,contactsList);
         getContactsList(getActivity());
         contactsView.setAdapter(adapter);
-        contactsView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        contactsView.setOnItemClickListener(new MyListener() );
+        contactsView.setOnCreateContextMenuListener(new MyListener());
         return rootView;
     }
 
@@ -92,13 +98,36 @@ public class ContactsFragment extends Fragment implements AdapterView.OnItemClic
         adapter.notifyDataSetChanged();
     }
 
+    class MyListener implements AdapterView.OnItemClickListener, View.OnCreateContextMenuListener{
+        //点击拨打电话
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            String phoneNumber = (String) ((TextView)view.findViewById(R.id.contacts_number)).getText();
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
+        //长按弹出菜单
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("选择操作");
+            menu.add(0,0,0,"编辑");
+            menu.add(0,1,0,"删除");
+        }
+    }
+    //菜单点击事件
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String phoneNumber = (String) ((TextView)view.findViewById(R.id.contacts_number)).getText();
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-
+    public boolean onContextItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case 0:
+                Toast.makeText(getContext(), "编辑联系人的方法", Toast.LENGTH_SHORT).show();
+                return true;
+            case 1:
+                Toast.makeText(getActivity(), "删除联系人的方法", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }
