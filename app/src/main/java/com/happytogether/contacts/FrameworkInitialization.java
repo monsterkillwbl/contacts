@@ -1,6 +1,7 @@
 package com.happytogether.contacts;
 
 import com.happytogether.contacts.processor.NonBlockingSingleThreadingProcessor;
+import com.happytogether.contacts.processor.SingleThreadProcessor;
 import com.happytogether.contacts.resource_manager.ResourceManagerTest;
 import com.happytogether.framework.log.IDELogger;
 import com.happytogether.framework.log.LogBus;
