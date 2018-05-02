@@ -9,7 +9,8 @@ import com.happytogether.framework.resouce_manager.ResourceManager;
 
 public class FrameworkInitialization {
 
-    public FrameworkInitialization(){
+    public FrameworkInitialization(String address){
+        ResourceManagerTest.dbInit(address);
         Processor.init(new NonBlockingSingleThreadingProcessor());
         ResourceManager.init(new ResourceManagerTest());
         LogBus.getInstance().register(new IDELogger());

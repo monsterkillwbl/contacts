@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        new FrameworkInitialization();
+        new FrameworkInitialization(this.getFilesDir().toString());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
