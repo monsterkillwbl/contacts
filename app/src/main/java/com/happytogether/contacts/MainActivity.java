@@ -28,6 +28,10 @@ import android.widget.Toast;
 import com.happytogether.contacts.processor.NonBlockingSingleThreadingProcessor;
 import com.happytogether.contacts.processor.SingleThreadProcessor;
 import com.happytogether.contacts.resource_manager.ResourceManagerTest;
+import com.happytogether.contacts.task.QueryCallDurationByTimeTask;
+import com.happytogether.contacts.task.QueryCallRecordByNameTask;
+import com.happytogether.contacts.task.QueryCallRecordByNumTask;
+import com.happytogether.contacts.task.QueryCallRecordByTimeTask;
 import com.happytogether.framework.log.IDELogger;
 import com.happytogether.framework.log.LogBus;
 import com.happytogether.framework.processor.Processor;
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //初始化框架
-        new FrameworkInitialization();
+        new FrameworkInitialization(this.getFilesDir().toString());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -100,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.READ_CALL_LOG
             },1);
         }
+        //QueryCallDurationByTimeTask.test1();
+        //QueryCallRecordByTimeTask.test1();
+        //QueryCallRecordByNameTask.test1();
+        //QueryCallRecordByNumTask.test1();
     }
 
 

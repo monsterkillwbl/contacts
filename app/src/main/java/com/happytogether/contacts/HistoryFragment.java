@@ -34,7 +34,7 @@ import java.util.List;
  * Created by Monsterkill on 2018/4/16.
  */
 
-public class HistoryFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class HistoryFragment extends Fragment{
     public HistoryAdapter adapter;
     public List<CallRecord> HistoryList = new ArrayList<>();
 
@@ -46,7 +46,16 @@ public class HistoryFragment extends Fragment implements AdapterView.OnItemClick
         adapter = new HistoryAdapter(getActivity(), R.layout.item_history, HistoryList);
         getCallHistoryList(getActivity());
         historyView.setAdapter(adapter);
-        historyView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        historyView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //点击拨号
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String phoneNumber = (String) ((TextView)view.findViewById(R.id.history_number)).getText();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 
@@ -154,12 +163,4 @@ public class HistoryFragment extends Fragment implements AdapterView.OnItemClick
         adapter.notifyDataSetChanged();
     }
 
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String phoneNumber = (String) ((TextView)view.findViewById(R.id.history_number)).getText();
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 }
