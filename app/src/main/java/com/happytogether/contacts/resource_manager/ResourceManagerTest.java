@@ -16,14 +16,13 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-//实现IResourceManager的接口即可，这里只是演示所以写死的假数据
 public class ResourceManagerTest implements IResourceManager {
 
     List<Contacts> contactsList = null;
     List<CallRecord> callRecordList = null;
     static SQLiteDatabase db;
     static String address;
-    static public void dbInit(String  Address) //初始化
+    static public void dbInit(String  Address) //sqlite数据库所在地址初始化
     {
         address = Address;
     }
@@ -52,24 +51,19 @@ public class ResourceManagerTest implements IResourceManager {
                     "Duration int NOT NULL,StartTime int NOT NULL)";
             db.execSQL(builder);
         }
-        Contacts contacts1 = new Contacts();
-        Contacts contacts2 = new Contacts();
-        contacts1.setName("王博伦");
-        contacts1.setNumber("662331");
-        addContacts(contacts1);
-        contacts2.setName("赵日天");
-        contacts2.setNumber("6622331");
-        addContacts(contacts2);
-        CallRecord callRecord = new CallRecord();
-        callRecord.setNumber("23333333");
-        callRecord.setStatus(CallRecord.NORMAL);
-        callRecord.setDuration(60);
-        addCallRecord(callRecord);
-        CallRecord callRecord1 = new CallRecord();
-        callRecord1.setNumber("6623301");
-        callRecord1.setStatus(CallRecord.NORMAL);
-        callRecord1.setDuration(45);
-        addCallRecord(callRecord1);
+        Cursor cursor = db.rawQuery("select * from callrecord",null);
+        if(cursor.getCount() == 0)
+        {
+            Contacts contacts = new Contacts();
+            contacts.setName("叶良辰");
+            contacts.setNumber("测试样例");
+            addContacts(contacts);
+            CallRecord callRecord = new CallRecord();
+            callRecord.setNumber("测试样例");
+            callRecord.setStatus(CallRecord.NORMAL);
+            callRecord.setDuration(60);
+            addCallRecord(callRecord);
+        }
     }
 
     @Override
