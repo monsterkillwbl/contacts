@@ -1,13 +1,10 @@
 package com.happytogether.contacts.resource_manager;
 
-import com.happytogether.contacts.MainActivity;
 import com.happytogether.framework.log.LogBus;
 import com.happytogether.framework.resouce_manager.IResourceManager;
 import com.happytogether.framework.type.CallRecord;
 import com.happytogether.framework.type.Contacts;
-import com.happytogether.contacts.MainActivity;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
