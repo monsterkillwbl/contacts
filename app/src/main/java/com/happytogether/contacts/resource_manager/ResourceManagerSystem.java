@@ -30,7 +30,6 @@ public class ResourceManagerSystem implements IResourceManager {
         callRecordList = new ArrayList<CallRecord>();
         _res = res;
         initContacts();
-        initCallRecord();
     }
     public void initCallRecord()
     {
@@ -165,6 +164,8 @@ public class ResourceManagerSystem implements IResourceManager {
 
     @Override
     public List<CallRecord> getAllCallRecord() {
+        callRecordList.clear();
+        initCallRecord();
         return callRecordList;
     }
 
