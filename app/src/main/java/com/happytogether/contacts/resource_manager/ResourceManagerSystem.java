@@ -73,7 +73,7 @@ public class ResourceManagerSystem implements IResourceManager {
             while (cur.moveToNext())
             {
                 Contacts ct = new Contacts();
-                String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))+"";
                 String rawContactsId = "";
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                 ct.setId(id);
