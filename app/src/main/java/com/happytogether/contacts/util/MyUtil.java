@@ -9,6 +9,8 @@ import com.happytogether.framework.type.Contacts;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //工具方法在这里实现
 public class MyUtil {
@@ -57,26 +59,31 @@ public class MyUtil {
         return count;
     }
 
-    public static List filterCallRecordByNum(List callRecords, String num) {
+    public static List filterCallRecordByKeyWords(List callRecords, String num) {
         Iterator it = callRecords.iterator();
         List <CallRecord> reRecord = new ArrayList<CallRecord>();
+        num = num.toLowerCase(); //为了模糊匹配规定所有字母全部转为小写进行
         while(it.hasNext())
         {
             CallRecord theRecord = (CallRecord)it.next();
-            if(num.equals(theRecord.getNumber()))
+            String pattern = "\\w*" + num + "\\w*";
+            String content = theRecord.getNumber();
+            boolean isMatch = Pattern.matches(pattern, content);
+            if(isMatch) {
                 reRecord.add(theRecord);
+                continue;
+            }
+            content = theRecord.getName();//先无视汉字向拼音的转换 写好后再加上此步骤
+            //System.out.println(theRecord.getName() + "$" + theRecord.getNumber() + "$" + theRecord.getDuration());
+            /// /System.out.println("qqq" + content);
+            isMatch = Pattern.matches(pattern, content);
+            if(isMatch) {
+                //System.out.println("LALALA" + content);
+                reRecord.add(theRecord);
+                continue;
+            }
         }
         return reRecord;
     }
 
-    public static String findNumberByname(List contacts, String name) {
-        Iterator it = contacts.iterator();
-        while(it.hasNext())
-        {
-            Contacts thecontact = (Contacts)it.next();
-            if(thecontact.getName().equals(name))
-                return thecontact.getNumber();
-        }
-        return null;
-    }
 }

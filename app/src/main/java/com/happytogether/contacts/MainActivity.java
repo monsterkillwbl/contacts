@@ -1,14 +1,12 @@
 package com.happytogether.contacts;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -23,21 +21,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import com.happytogether.contacts.processor.NonBlockingSingleThreadingProcessor;
-import com.happytogether.contacts.processor.SingleThreadProcessor;
-import com.happytogether.contacts.resource_manager.ResourceManagerTest;
-import com.happytogether.contacts.task.QueryCallDurationByTimeTask;
-import com.happytogether.contacts.task.QueryCallRecordByNameTask;
-import com.happytogether.contacts.task.QueryCallRecordByNumTask;
-import com.happytogether.contacts.task.QueryCallRecordByTimeTask;
-import com.happytogether.framework.log.IDELogger;
-import com.happytogether.framework.log.LogBus;
-import com.happytogether.framework.processor.Processor;
-import com.happytogether.framework.resouce_manager.ResourceManager;
+import com.happytogether.contacts.task.QueryCallRecordByKeyWordsTask;
 
-import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,8 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //QueryCallDurationByTimeTask.test1();
         //QueryCallRecordByTimeTask.test1();
-        //QueryCallRecordByNameTask.test1();
-        //QueryCallRecordByNumTask.test1();
+        //QueryCallRecordByKeyWordsTask.test1();
     }
 
 
