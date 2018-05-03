@@ -63,8 +63,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        new FrameworkInitialization(this.getFilesDir().toString());
+        //运行时权限
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission_group.CONTACTS)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.WRITE_CONTACTS,
+                    Manifest.permission.WRITE_CALL_LOG,
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.CALL_PHONE,
+                    Manifest.permission.READ_CALL_LOG
+            },1);
 
+        }
+        new FrameworkInitialization(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -93,16 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //运行时权限
-        if (ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission_group.CONTACTS)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{
-                    Manifest.permission.READ_CONTACTS,
-                    Manifest.permission.CALL_PHONE,
-                    Manifest.permission.READ_CALL_LOG
-            },1);
-        }
         //QueryCallDurationByTimeTask.test1();
         //QueryCallRecordByTimeTask.test1();
         //QueryCallRecordByNameTask.test1();

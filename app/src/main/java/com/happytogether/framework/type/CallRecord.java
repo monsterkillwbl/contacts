@@ -8,7 +8,8 @@ public class CallRecord extends FeatureObj {
     private int _status;
     private int _duration;
     private long _startTime;
-
+    private String _id;
+    private String _name;
     public static final int ERROR = 0;
     public static final int NORMAL = 1;
 
@@ -17,6 +18,10 @@ public class CallRecord extends FeatureObj {
         _status = ERROR;
         _duration = 0;
     }
+
+    public void setId(String id) { _id = id; }
+
+    public String getId() { return _id; }
 
     public void setNumber(String number){
         _number = number;
@@ -50,6 +55,9 @@ public class CallRecord extends FeatureObj {
         return _startTime;
     }
 
+    public void setName(String name) { _name = name; }
+
+    public String getName() { return _name; }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

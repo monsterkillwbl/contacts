@@ -6,7 +6,7 @@ public class Contacts extends FeatureObj {
 
     private String _number;
     private String _name;
-
+    private String _id;
     public Contacts(){
         _name = "";
         _number = "";
@@ -27,6 +27,10 @@ public class Contacts extends FeatureObj {
     public String getName(){
         return _name;
     }
+
+    public void setId(String id) { _id = id;}
+
+    public String getId() { return _id; }
 
     @Override
     public boolean equals(Object o) {
