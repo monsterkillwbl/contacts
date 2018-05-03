@@ -73,12 +73,9 @@ public class MyUtil {
                 reRecord.add(theRecord);
                 continue;
             }
-            content = theRecord.getName();//先无视汉字向拼音的转换 写好后再加上此步骤
-            //System.out.println(theRecord.getName() + "$" + theRecord.getNumber() + "$" + theRecord.getDuration());
-            /// /System.out.println("qqq" + content);
+            content = theRecord.getName().toLowerCase();//先无视汉字向拼音的转换 写好后再加上此步骤
             isMatch = Pattern.matches(pattern, content);
             if(isMatch) {
-                //System.out.println("LALALA" + content);
                 reRecord.add(theRecord);
                 continue;
             }

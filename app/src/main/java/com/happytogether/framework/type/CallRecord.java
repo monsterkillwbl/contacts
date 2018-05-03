@@ -57,7 +57,7 @@ public class CallRecord extends FeatureObj {
 
     public void setName(String name) { _name = name; }
 
-    public String getName() { return _name; }
+    public String getName() { return _name + ""; }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

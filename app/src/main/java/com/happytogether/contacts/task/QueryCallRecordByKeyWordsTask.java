@@ -34,12 +34,9 @@ public class QueryCallRecordByKeyWordsTask extends Task {
 
     public static void test1(){
         //new FrameworkInitialization();
-        System.out.println("Battle0");
-        Task test_task = new QueryCallRecordByKeyWordsTask("73");
+        Task test_task = new QueryCallRecordByKeyWordsTask("ang");
         Processor.getInstance().process(test_task);
-        System.out.println("Battle1");
         while(!test_task.finished()){ }//加载完成后再进行下一步
-        System.out.println("Battle2");
         if(test_task.getStatus() == Task.SUCCESS){
             String s = "";
             for(CallRecord r : (List<CallRecord>)test_task.getResult()){
