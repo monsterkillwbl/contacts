@@ -1,5 +1,6 @@
 package com.happytogether.contacts.task;
 
+import com.github.stuxuhai.jpinyin.PinyinException;
 import com.happytogether.contacts.util.MyUtil;
 import com.happytogether.framework.log.LogBus;
 import com.happytogether.framework.processor.Processor;
@@ -19,11 +20,15 @@ public class QueryCallRecordByKeyWordsTask extends Task {
     }
 
     @Override
-    public int exec() {
+    public int exec(){
         //获取所有通话记录
         List callRecords = ResourceManager.getInstance().getAllCallRecord();
         //根据关键词过滤出指定的通话记录
-        callRecords = MyUtil.filterCallRecordByKeyWords(callRecords, _KW);
+        try {
+            callRecords = MyUtil.filterCallRecordByKeyWords(callRecords, _KW);
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }
         //设置计算结果
         setResult(callRecords);
         //打印日志
@@ -34,7 +39,7 @@ public class QueryCallRecordByKeyWordsTask extends Task {
 
     public static void test1(){
         //new FrameworkInitialization();
-        Task test_task = new QueryCallRecordByKeyWordsTask("ang");
+        Task test_task = new QueryCallRecordByKeyWordsTask("hjz");
         Processor.getInstance().process(test_task);
         while(!test_task.finished()){ }//加载完成后再进行下一步
         if(test_task.getStatus() == Task.SUCCESS){

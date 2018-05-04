@@ -22,8 +22,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import com.github.stuxuhai.jpinyin.PinyinException;
+import com.github.stuxuhai.jpinyin.PinyinFormat;
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.happytogether.contacts.task.QueryCallRecordByKeyWordsTask;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +97,32 @@ public class MainActivity extends AppCompatActivity {
         //QueryCallDurationByTimeTask.test1();
         //QueryCallRecordByTimeTask.test1();
         //QueryCallRecordByKeyWordsTask.test1();
+        /*String str = "多音字检测1重量1重复1测量2厦门2大厦";
+        String output;
+        try {
+            output = PinyinHelper.convertToPinyinString(str, ",", PinyinFormat.WITH_TONE_MARK); // nǐ,hǎo,shì,jiè
+            System.out.println(output);
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }
+        try {
+            output = PinyinHelper.convertToPinyinString(str, ",", PinyinFormat.WITH_TONE_NUMBER); // ni3,hao3,shi4,jie4
+            System.out.println(output);
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }
+        try {
+            output = PinyinHelper.convertToPinyinString(str, "", PinyinFormat.WITHOUT_TONE); // ni,hao,shi,jie
+            System.out.println(output);
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }
+        try {
+            output = PinyinHelper.getShortPinyin(str); // nhsj
+            System.out.println(output);
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }*/
     }
 
 
